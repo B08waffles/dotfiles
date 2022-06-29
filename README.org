@@ -10,4 +10,4 @@ need to be done by hand.
 
 ** Screenshot of my Manjaro desktop
 Running Qtile Window Manager
-[[~/screenshots/updatedmanjaro.jpg]]
+[[/screenshots/updatedmanjaro.jpg]]
