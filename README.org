@@ -1,0 +1,13 @@
+#+title: dotfiles
+
+These files and folders contain my custom configuration for my favorite
+applications, you can use these by copy pasting parts from them or downloading
+them directly. Either way, if you do use these just make sure you have all the
+dependencies necessary in order to run your system with these configs.
+
+I may add an install script at some point but intil then an installation would
+need to be done by hand.
+
+** Screenshot of my Manjaro desktop
+Running Qtile Window Manager
+[[~/screenshots/updatedmanjaro.jpg]]
