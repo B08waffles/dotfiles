@@ -14,3 +14,25 @@ Running Qtile Window Manager
 
 Running Vim and Doom Emacs
     [[/screenshots/vimandemacs.jpg]]
+
+** Note
+If you use the .vimrc provided here, I use the "Pathogen" plugin
+manager. Inside "~/.vim/bundle" are the following:
++ coc.nvim
++ css-color
++ dracula
++ lightline.vim
++ nerdtree
++ rainbow_parentheses
++ vim-devicons
++ vim-fugitive
++ vim-latex-live-preview
++ vim-polygot
++ vim-startify
++ vim-which-key
+
+  I configured Vim to be a replacement for my previous IDE of choice,
+  VS Code, or more specifically "Code OSS", therefore I carried over
+  many conveniences from "Code" over to Vim, however, I then found
+  Doom Emacs and haven't looked back. Vim is still useful though as it
+  is a highly extensible and lightweight command line text editor.
