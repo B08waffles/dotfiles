@@ -46,7 +46,7 @@ browser = "librewolf"
 discord = "discord"
 file_manager = "dolphin"
 
-myTerm = "konsole"
+myTerm = "alacritty"
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -244,7 +244,7 @@ layout_theme = {
     "margin": 10,
     "border_focus": "#bd93f9",
     "border_width": 2,
-    "font": "Fura Code Nerd Font Mono",
+    "font": "FuraCode Nerd Font Mono",
     "fontsize": 12,
 }
 
@@ -265,7 +265,7 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="firacode nerd font mono",
+    font="FuraCode Nerd Font Mono",
     fontsize=12,
     padding=3,
 )
@@ -312,7 +312,7 @@ def init_widgets_list():
         widget.Sep(linewidth=0, padding=6,
                    foreground=colors[2], background=colors[0]),
         widget.GroupBox(
-            font="Ubuntu Bold",
+            font="Source Code Pro Black",
             fontsize=11,
             margin_y=3,
             margin_x=0,
@@ -334,136 +334,144 @@ def init_widgets_list():
         widget.TextBox(
             text="|",
             font="Ubuntu Mono",
-            background=colors[0],
-            foreground="474747",
+            background=dracula["background"],
+            foreground=dracula["comment"],
             padding=2,
             fontsize=14,
         ),
         widget.CurrentLayoutIcon(
             custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
-            foreground=colors[2],
-            background=colors[0],
+            foreground=dracula["cyan"],
+            background=dracula["background"],
             padding=0,
-            scale=0.7,
+            scale=0.8,
         ),
         widget.CurrentLayout(
             foreground=dracula["foreground"], background=dracula["background"],
-            padding=5),
+            padding=5, font="Source Code Pro Black"),
         widget.TextBox(
             text="|",
             font="Ubuntu Mono",
             background=dracula["background"],
-            foreground="474747",
+            foreground=dracula["comment"],
             padding=2,
             fontsize=15,
         ),
         widget.WindowName(
             foreground=dracula["purple"], background=dracula["background"],
-            padding=0),
-        widget.Systray(background=dracula["background"], padding=5),
+            padding=0, font="Source Code Pro Black",),
+        widget.Systray(background=dracula["background"], padding=5, font="Source Code Pro Black",),
         widget.Sep(linewidth=0, padding=6,
                    foreground=colors[0], background=dracula["background"]),
         widget.TextBox(
             text="",
             font="Ubuntu Mono",
             background=dracula["background"],
-            foreground=dracula["red"],
+            foreground=dracula["current"],
             padding=0,
             fontsize=40,
         ),
         widget.Net(
             format="歷 {down} ↓↑ {up}",
-            foreground=dracula["background"],
-            background=dracula["red"],
+            foreground=dracula["cyan"],
+            background=dracula["current"],
             padding=5,
+            update_interval=5,
+            font="Source Code Pro Black",
         ),
         widget.TextBox(
             text="",
             font="Ubuntu Mono",
-            background=dracula["red"],
-            foreground=dracula["green"],
+            background=dracula["current"],
+            foreground=dracula["comment"],
             padding=0,
             fontsize=37,
         ),
         widget.ThermalSensor(
-            foreground=dracula["background"],
-            background=dracula["green"],
+            foreground=dracula["orange"],
+            background=dracula["comment"],
             threshold=90,
             fmt="﬙ {}",
             padding=5,
+            font="Source Code Pro Black",
         ),
         widget.TextBox(
             text="",
             font="Ubuntu Mono",
-            background=dracula["green"],
-            foreground=dracula["orange"],
+            background=dracula["comment"],
+            foreground=dracula["current"],
             padding=0,
             fontsize=37,
         ),
-        widget.CheckUpdates(
-            update_interval=1800,
-            distro="Manjaro",
-            display_format="ﮮ {updates} ",
-            foreground=dracula["background"],
-            colour_have_updates=dracula["orange"],
-            colour_no_updates=dracula["orange"],
-            mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn(myTerm + " -e sudo pacman -Syu")
-            },
-            padding=5,
-            background=dracula["orange"],
-        ),
-        widget.TextBox(
-            text="",
-            font="Ubuntu Mono",
-            background=dracula["orange"],
-            foreground=dracula["yellow"],
-            padding=0,
-            fontsize=37,
-        ),
+#        widget.CheckUpdates(
+#            update_interval=1800,
+#            distro="Manjaro",
+#            display_format="ﮮ {updates} ",
+#            foreground=dracula["background"],
+#            colour_have_updates=dracula["orange"],
+#            colour_no_updates=dracula["orange"],
+#            mouse_callbacks={
+#                "Button1": lambda: qtile.cmd_spawn(myTerm + " -e sudo pacman -Syu")
+#            },
+#            padding=5,
+#            background=dracula["orange"],
+#        ),
+#        widget.TextBox(
+#            text="",
+#            font="Ubuntu Mono",
+#            background=dracula["orange"],
+#            foreground=dracula["yellow"],
+#            padding=0,
+#            fontsize=37,
+#        ),
         widget.Memory(
-            foreground=dracula["background"],
-            background=dracula["yellow"],
+            foreground=dracula["purple"],
+            background=dracula["current"],
             mouse_callbacks={
                 "Button1": lambda: qtile.cmd_spawn(myTerm + " -e htop")},
             fmt=" {}",
             padding=5,
+            font="Source Code Pro Black",
         ),
         widget.TextBox(
             text="",
             font="Ubuntu Mono",
-            background=dracula["yellow"],
-            foreground=dracula["pink"],
+            background=dracula["current"],
+            foreground=dracula["comment"],
             padding=0,
             fontsize=37,
         ),
         widget.Volume(
-            foreground=dracula["background"], background=dracula["pink"], fmt="墳 {}", padding=5
+            foreground=dracula["yellow"],
+            background=dracula["comment"], fmt="墳 {}", padding=5,
+            font="Source Code Pro Black",
         ),
         widget.TextBox(
             text="",
             font="Ubuntu Mono",
-            background=dracula["pink"],
-            foreground=dracula["cyan"],
+            background=dracula["comment"],
+            foreground=dracula["current"],
             padding=0,
             fontsize=37,
         ),
         widget.OpenWeather(
-            foreground=dracula["background"], background=dracula["cyan"],
+            foreground=dracula["pink"], background=dracula["current"],
             padding=5, location="Wellington Point, AU",
-            format=" {main_temp}{units_temperature} {humidity}%"
+            format=" {main_temp}{units_temperature} {humidity}%",
+            font="Source Code Pro Black",
         ),
         widget.TextBox(
             text="",
             font="Ubuntu Mono",
-            background=dracula["cyan"],
-            foreground=dracula["purple"],
+            background=dracula["current"],
+            foreground=dracula["comment"],
             padding=0,
             fontsize=37,
         ),
         widget.Clock(
-            foreground=dracula["background"], background=dracula["purple"],
-            format=" %A, %B %d - %H:%M "),
+            foreground=dracula["green"], background=dracula["comment"],
+            format=" %A, %B %d - %H:%M ",
+            font="Source Code Pro Black",),
     ]
     return widgets_list
 
@@ -483,14 +491,14 @@ def init_widgets_screen2():
 
 screens = [
     Screen(
-        wallpaper="~/Downloads/city2.jpg",
-        wallpaper_mode="stretch",
-        top=bar.Bar(widgets=init_widgets_screen1(), opacity=1.0, size=20),
+#        wallpaper="~/Downloads/city2.jpg",
+#        wallpaper_mode="stretch",
+        top=bar.Bar(widgets=init_widgets_screen1(), opacity=0.8, size=20),
     ),
     Screen(
-        wallpaper="~/Downloads/city1.jpg",
-        wallpaper_mode="stretch",
-        top=bar.Bar(widgets=init_widgets_screen2(), opacity=1.0, size=20),
+#        wallpaper="~/Downloads/city1.jpg",
+#        wallpaper_mode="stretch",
+        top=bar.Bar(widgets=init_widgets_screen2(), opacity=0.8, size=20),
     ),
     # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
     # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
@@ -525,6 +533,8 @@ floating_layout = layout.Floating(
         Match(wm_class="ssh-askpass"),  # ssh-askpass
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
+        Match(title="Spectacle"),
+        Match(wm_class="Spectacle"),
     ]
 )
 auto_fullscreen = True

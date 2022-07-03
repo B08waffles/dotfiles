@@ -138,3 +138,5 @@
 
 ;; Update recent files history list every 5 minutes
 (run-at-time nil (* 5 60) 'recentf-save-list)
+
+(add-to-list 'auto-mode-alist '("\\.razor\\'" . web-mode))

@@ -18,6 +18,7 @@
   - [[#source-code-block-syntax-highlighting][Source Code Block Syntax Highlighting]]
   - [[#runtime-performance][RUNTIME PERFORMANCE]]
   - [[#recent-files][Recent Files]]
+  - [[#associate-a-content-type][Associate a content type]]
 
 * Doom Emacs Config
 ** Theme, user, email and defaults
@@ -227,4 +228,10 @@ Persist recently accessed files across sessions regardless of how we exit Emacs.
 #+BEGIN_SRC emacs-lisp
 ;; Update recent files history list every 5 minutes
 (run-at-time nil (* 5 60) 'recentf-save-list)
+#+END_SRC
+
+** Associate a content type
+I want .razor to be run in the web major mode.
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'auto-mode-alist '("\\.razor\\'" . web-mode))
 #+END_SRC
