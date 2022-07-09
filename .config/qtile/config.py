@@ -142,8 +142,8 @@ keys = [
     # Emacs programs launched using the key chord CTRL+e followed by 'key'
     KeyChord(["control"],"e", [
         Key([], "e",
-            lazy.spawn("emacsclient -c -a 'emacs'"),
-            desc='Launch Emacs'
+            lazy.spawn("emacsclient --eval '(emacs-everywhere)'"),
+            desc='Launch Emacs Everywhere! MUWAHAHA'
             ),
         Key([], "b",
             lazy.spawn("emacsclient -c -a 'emacs' --eval '(ibuffer)'"),
@@ -490,11 +490,11 @@ def init_widgets_screen2():
 
 
 screens = [
-    Screen(
+#    Screen(
 #        wallpaper="~/Downloads/city2.jpg",
 #        wallpaper_mode="stretch",
-        top=bar.Bar(widgets=init_widgets_screen1(), opacity=0.8, size=20),
-    ),
+#        top=bar.Bar(widgets=init_widgets_screen1(), opacity=0.8, size=20),
+#   ),
     Screen(
 #        wallpaper="~/Downloads/city1.jpg",
 #        wallpaper_mode="stretch",

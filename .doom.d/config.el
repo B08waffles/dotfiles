@@ -104,7 +104,7 @@
 (beacon-mode 1)
 
 ;; Opacity
-(add-to-list 'default-frame-alist '(alpha . 95))
+(add-to-list 'default-frame-alist '(alpha . 100))
 
 ;; org-auto-tangle setup
 (use-package! org-auto-tangle
@@ -135,6 +135,7 @@
 
 ;; Make gc pauses faster by decreasing the threshold.
 (setq gc-cons-threshold (* 2 1000 1000))
+(add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
 
 ;; Update recent files history list every 5 minutes
 (run-at-time nil (* 5 60) 'recentf-save-list)

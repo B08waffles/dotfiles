@@ -140,7 +140,7 @@ Org roam directory and org-journal directory are setup here.
 #+END_SRC
 
 ** Beacon
-Beacon is a helper tool that shows a quick animation when scrolling to show where the mouse/pointer lands.
+This is a helper tool that shows a quick animation when scrolling to show where the mouse/pointer lands.
 
 #+BEGIN_SRC emacs-lisp
 
@@ -153,8 +153,9 @@ Here we set the desired opacity from 0 - 100.
 
 #+BEGIN_SRC emacs-lisp
 
+
 ;; Opacity
-(add-to-list 'default-frame-alist '(alpha . 95))
+(add-to-list 'default-frame-alist '(alpha . 100))
 #+END_SRC
 
 ** Org-auto-tangle
@@ -179,7 +180,7 @@ Org-bullets gives us attractive bullets rather than asterisks.
 #+end_src
 
 ** RAINBOW MODE
-Rainbox mode displays the actual color for any hex value color.  It's such a
+Rainbox mode displays the actual color for any hex value color. It's such a
 nice feature that I wanted it turned on all the time, regardless of what mode I
 am in. The following creates a global minor mode for rainbow-mode and enables
 it.
@@ -221,6 +222,7 @@ Dial the GC threshold back down so that garbage collection happens more frequent
 #+begin_src emacs-lisp
 ;; Make gc pauses faster by decreasing the threshold.
 (setq gc-cons-threshold (* 2 1000 1000))
+(add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
 #+end_src
 
 ** Recent Files
