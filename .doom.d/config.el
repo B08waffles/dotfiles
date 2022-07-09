@@ -93,15 +93,62 @@
   '(font-lock-comment-face :slant italic)
   '(font-lock-keyword-face :slant italic))
 
+(after! org-roam
+    :ensure t
+    :init
+    (setq org-roam-v2-ack t)
+    :custom
+    (setq org-roam-directory (concat org-directory "RoamNotes"))
+    (setq org-roam-complete-everywhere t)
+    (setq org-roam-capture-templates
+        '(
+            ("d" "default" plain "%?"
+            :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                               "#+title: ${title}n<t") :unnarrowed t)
+            ("p" "powerlake" plain "* Topic: %?"
+            :target (file+head "work/powerlake/%<%Y%m%d%H%M%S>-${slug}.org"
+                               "#+title: ${title}\n#+filetags: Powerlake Work") :unnarrowed t)
+            ("u" "utility" plain
+            "* Topic: %?"
+            :target (file+head "utility/%<%Y%m%d%H%M%S>-${slug}.org"
+                               "#+title: ${title}\n#+filetags: Utility") :unnarrowed t)
+            ("w" "work" plain
+            "* Topic: %?"
+            :target (file+head "work/%<%Y%m%d%H%M%S>-${slug}.org"
+                               "#+title: ${title}\n#+filetags: Work") :unnarrowed t)
+            ("s" "social" plain
+            "* Topic: %?"
+            :target (file+head "social/%<%Y%m%d%H%M%S>-${slug}.org"
+                               "#+title: ${title}\n#+filetags: Social") :unnarrowed t)
+            ("n" "news" plain "* Topic: %?"
+            :target (file+head "news/%<%Y%m%d%H%M%S>-${slug}.org"
+                               "#+title: ${title}\n#+filetags: News") :unnarrowed t)
+        )
+    )
+    :config
+    (org-roam-setup)
+)
 ;; Org configs override
 (setq
-      org-roam-directory (concat org-directory "RoamNotes")
+;      org-roam-directory (concat org-directory "RoamNotes")
       org-journal-dir (concat org-directory "journal")
-      org-journal-file-format "%Y-%m-%d.org"
-      )
+      org-journal-file-format "%Y-%m-%d.org")
+;(org-roam-capture-templates
+;;   '(("d" "default" plain
+;      "%?"
+;      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+;      :unnarrowed t)))
+;("l" "programming language" plain
+; "* Characteristics\n\n- Family: %?\n- Inspired by: \n\n* Reference:\n\n"
+; :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+; :unnarrowed t)
+;      )
 
 ;; Beacon
 (beacon-mode 1)
+
+;  (set-frame-parameter (selected-frame) 'alpha '(90 . 90))
+;  (add-to-list 'default-frame-alist '(alpha . (90 . 90)))
 
 ;; Opacity
 (add-to-list 'default-frame-alist '(alpha . 100))
@@ -141,3 +188,11 @@
 (run-at-time nil (* 5 60) 'recentf-save-list)
 
 (add-to-list 'auto-mode-alist '("\\.razor\\'" . web-mode))
+
+(use-package! elcord
+;  :straight t
+;  :disabled dw/is-termux
+;  :custom
+;  (elcord-display-buffer-details nil)
+  :config
+  (elcord-mode))

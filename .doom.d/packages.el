@@ -51,3 +51,4 @@
 (package! org-auto-tangle)
 (package! beacon)
 (package! org-bullets)
+(package! elcord)

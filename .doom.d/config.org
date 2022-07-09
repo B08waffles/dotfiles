@@ -19,6 +19,7 @@
   - [[#runtime-performance][RUNTIME PERFORMANCE]]
   - [[#recent-files][Recent Files]]
   - [[#associate-a-content-type][Associate a content type]]
+  - [[#lets-discord-see-doom-is-running][Lets Discord see Doom is running]]
 
 * Doom Emacs Config
 ** Theme, user, email and defaults
@@ -130,13 +131,56 @@ This is where we set our fonts.
 Org roam directory and org-journal directory are setup here.
 
 #+BEGIN_SRC emacs-lisp
-
+(after! org-roam
+    :ensure t
+    :init
+    (setq org-roam-v2-ack t)
+    :custom
+    (setq org-roam-directory (concat org-directory "RoamNotes"))
+    (setq org-roam-complete-everywhere t)
+    (setq org-roam-capture-templates
+        '(
+            ("d" "default" plain "%?"
+            :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                               "#+title: ${title}n<t") :unnarrowed t)
+            ("p" "powerlake" plain "* Topic: %?"
+            :target (file+head "work/powerlake/%<%Y%m%d%H%M%S>-${slug}.org"
+                               "#+title: ${title}\n#+filetags: Powerlake Work") :unnarrowed t)
+            ("u" "utility" plain
+            "* Topic: %?"
+            :target (file+head "utility/%<%Y%m%d%H%M%S>-${slug}.org"
+                               "#+title: ${title}\n#+filetags: Utility") :unnarrowed t)
+            ("w" "work" plain
+            "* Topic: %?"
+            :target (file+head "work/%<%Y%m%d%H%M%S>-${slug}.org"
+                               "#+title: ${title}\n#+filetags: Work") :unnarrowed t)
+            ("s" "social" plain
+            "* Topic: %?"
+            :target (file+head "social/%<%Y%m%d%H%M%S>-${slug}.org"
+                               "#+title: ${title}\n#+filetags: Social") :unnarrowed t)
+            ("n" "news" plain "* Topic: %?"
+            :target (file+head "news/%<%Y%m%d%H%M%S>-${slug}.org"
+                               "#+title: ${title}\n#+filetags: News") :unnarrowed t)
+        )
+    )
+    :config
+    (org-roam-setup)
+)
 ;; Org configs override
 (setq
-      org-roam-directory (concat org-directory "RoamNotes")
+;      org-roam-directory (concat org-directory "RoamNotes")
       org-journal-dir (concat org-directory "journal")
-      org-journal-file-format "%Y-%m-%d.org"
-      )
+      org-journal-file-format "%Y-%m-%d.org")
+;(org-roam-capture-templates
+;;   '(("d" "default" plain
+;      "%?"
+;      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+;      :unnarrowed t)))
+;("l" "programming language" plain
+; "* Characteristics\n\n- Family: %?\n- Inspired by: \n\n* Reference:\n\n"
+; :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+; :unnarrowed t)
+;      )
 #+END_SRC
 
 ** Beacon
@@ -152,7 +196,8 @@ This is a helper tool that shows a quick animation when scrolling to show where 
 Here we set the desired opacity from 0 - 100.
 
 #+BEGIN_SRC emacs-lisp
-
+;  (set-frame-parameter (selected-frame) 'alpha '(90 . 90))
+;  (add-to-list 'default-frame-alist '(alpha . (90 . 90)))
 
 ;; Opacity
 (add-to-list 'default-frame-alist '(alpha . 100))
@@ -236,4 +281,15 @@ Persist recently accessed files across sessions regardless of how we exit Emacs.
 I want .razor to be run in the web major mode.
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'auto-mode-alist '("\\.razor\\'" . web-mode))
+#+END_SRC
+
+** Lets Discord see Doom is running
+#+BEGIN_SRC emacs-lisp
+(use-package! elcord
+;  :straight t
+;  :disabled dw/is-termux
+;  :custom
+;  (elcord-display-buffer-details nil)
+  :config
+  (elcord-mode))
 #+END_SRC
