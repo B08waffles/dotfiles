@@ -93,6 +93,7 @@
   '(font-lock-comment-face :slant italic)
   '(font-lock-keyword-face :slant italic))
 
+;; org-roam templates and overrides
 (after! org-roam
     :ensure t
     :init
@@ -104,45 +105,42 @@
         '(
             ("d" "default" plain "%?"
             :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
-                               "#+title: ${title}n<t") :unnarrowed t)
+             "#+title:${title}\n#+filetags:General\n#+LATEX_HEADER:\\newcommand{\\titleofdoc}{${title}}\n#+LATEX_HEADER:\\input{~/textemplates/customdracula.tex}\n#+OPTIONS:title:nil toc:nil")
+            :unnarrowed t)
+
             ("p" "powerlake" plain "* Topic: %?"
             :target (file+head "work/powerlake/%<%Y%m%d%H%M%S>-${slug}.org"
-                               "#+title: ${title}\n#+filetags: Powerlake Work") :unnarrowed t)
-            ("u" "utility" plain
-            "* Topic: %?"
+             "#+title:${title}\n#+filetags:Powerlake Work\n#+LATEX_HEADER:\\newcommand{\\titleofdoc}{${title}}\n#+LATEX_HEADER:\\input{~/textemplates/customdracula.tex}\n#+OPTIONS:title:nil toc:nil")
+            :unnarrowed t)
+
+            ("u" "utility" plain "* Topic: %?"
             :target (file+head "utility/%<%Y%m%d%H%M%S>-${slug}.org"
-                               "#+title: ${title}\n#+filetags: Utility") :unnarrowed t)
-            ("w" "work" plain
-            "* Topic: %?"
+             "#+title:${title}\n#+filetags:Utility\n#+LATEX_HEADER:\\newcommand{\\titleofdoc}{${title}}\n#+LATEX_HEADER:\\input{~/textemplates/customdracula.tex}\n#+OPTIONS:title:nil toc:nil")
+            :unnarrowed t)
+
+            ("w" "work" plain "* Topic: %?"
             :target (file+head "work/%<%Y%m%d%H%M%S>-${slug}.org"
-                               "#+title: ${title}\n#+filetags: Work") :unnarrowed t)
-            ("s" "social" plain
-            "* Topic: %?"
+            "#+title:${title}\n#+filetags:Work\n#+LATEX_HEADER:\\newcommand{\\titleofdoc}{${title}}\n#+LATEX_HEADER:\\input{~/textemplates/customdracula.tex}\n#+OPTIONS:title:nil toc:nil")
+            :unnarrowed t)
+
+            ("s" "social" plain "* Topic: %?"
             :target (file+head "social/%<%Y%m%d%H%M%S>-${slug}.org"
-                               "#+title: ${title}\n#+filetags: Social") :unnarrowed t)
+            "#+title:${title}\n#+filetags:Social\n#+LATEX_HEADER:\\newcommand{\\titleofdoc}{${title}}\n#+LATEX_HEADER:\\input{~/textemplates/customdracula.tex}\n#+OPTIONS:title:nil toc:nil")
+            :unnarrowed t)
+
             ("n" "news" plain "* Topic: %?"
             :target (file+head "news/%<%Y%m%d%H%M%S>-${slug}.org"
-                               "#+title: ${title}\n#+filetags: News") :unnarrowed t)
+            "#+title:${title}\n#+filetags:News\n#+LATEX_HEADER:\\newcommand{\\titleofdoc}{${title}}\n#+LATEX_HEADER:\\input{~/textemplates/customdracula.tex}\n#+OPTIONS:title:nil toc:nil")
+            :unnarrowed t)
         )
     )
     :config
     (org-roam-setup)
 )
-;; Org configs override
+;; Org journal override
 (setq
-;      org-roam-directory (concat org-directory "RoamNotes")
       org-journal-dir (concat org-directory "journal")
       org-journal-file-format "%Y-%m-%d.org")
-;(org-roam-capture-templates
-;;   '(("d" "default" plain
-;      "%?"
-;      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
-;      :unnarrowed t)))
-;("l" "programming language" plain
-; "* Characteristics\n\n- Family: %?\n- Inspired by: \n\n* Reference:\n\n"
-; :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
-; :unnarrowed t)
-;      )
 
 ;; Beacon
 (beacon-mode 1)
